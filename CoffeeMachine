@@ -1,0 +1,180 @@
+public class CoffeeMachine {
+
+    //constants
+    private final String RESOURCES= """
+    The coffee machine has:
+    %d ml of water
+    %d ml of milk
+    %d g of coffee beans
+    %d disposable cups
+    $%d of money  
+    """;
+
+    private final String MONEY_GIVEN = "I gave you $%d";
+
+    private final String ADD_WATER_MSG= "Write how many ml of water you want to add:";
+    private final String ADD_MILK_MSG= "Write how many ml of milk you want to add:";
+    private final String ADD_BEANS_MSG= "Write how many grams of coffee beans you want to add:";
+    private final String ADD_CUPS_MSG= "Write how many disposable cups you want to add:";
+
+    //fields
+    int water = 400;
+    int milk = 540;
+    int coffeeBeans = 120;
+    int disposableCups = 9;
+    int money = 550;
+    boolean buy;
+    boolean fill;
+    boolean take;
+    boolean remaining;
+    boolean exit;
+
+    //constructor (no arg)
+    public CoffeeMachine() {
+
+    }
+
+    //coffee machine methods
+     public void CoffeeMachineState(String input) {
+        switch (input) {
+            case "buy":
+                this.buy = true;
+                break;
+            case "fill":
+                this.fill = true;
+                break;
+            case "take":
+                this.take = true;
+                break;
+            case "remaining":
+                this.remaining = true;
+                break;
+            case "exit":
+                this.exit = true;
+                break;
+            default:
+                System.out.println("Wrong input");
+
+        }
+    }
+
+    public void menuOption() {
+        System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:");
+    }
+    public void buyCoffee() {
+        menuOption();
+        Main.input = Main.scanner.next();
+        switch (Main.input) {
+            case "1" -> {
+
+                if (this.water - CoffeeTypes.ESPRESSO.water < 0) {
+                    System.out.println("Sorry, not enough water!");
+                } else if (this.milk - CoffeeTypes.ESPRESSO.milk < 0) {
+                    System.out.println("Sorry, not enough milk!");
+                } else if (this.coffeeBeans - CoffeeTypes.ESPRESSO.coffeeBeans < 0) {
+                    System.out.println("Sorry, not enough coffee beans!");
+                } else if (this.disposableCups - CoffeeTypes.ESPRESSO.cup < 0) {
+                    System.out.println("Sorry, not enough cups!");
+                } else if (this.water - CoffeeTypes.ESPRESSO.water < 0 && this.milk - CoffeeTypes.ESPRESSO.milk < 0) {
+                    System.out.println("Sorry, not enough water and milk!");
+                } else if (this.water - CoffeeTypes.ESPRESSO.water < 0 && this.milk - CoffeeTypes.ESPRESSO.milk < 0 &&
+                        this.coffeeBeans - CoffeeTypes.ESPRESSO.coffeeBeans < 0) {
+                    System.out.println("Sorry, not enough water, milk and coffee beans!");
+                } else if (this.water - CoffeeTypes.ESPRESSO.water < 0 && this.milk - CoffeeTypes.ESPRESSO.milk < 0 &&
+                        this.coffeeBeans - CoffeeTypes.ESPRESSO.coffeeBeans < 0 && this.disposableCups - CoffeeTypes.ESPRESSO.cup < 0) {
+                    System.out.println("Sorry, not enough water, milk, coffee beans and cups!");
+                } else {
+                    System.out.println("I have enough resources, making you a coffee!");
+                    this.water -= CoffeeTypes.ESPRESSO.water;
+                    this.milk -= CoffeeTypes.ESPRESSO.milk;
+                    this.coffeeBeans -= CoffeeTypes.ESPRESSO.coffeeBeans;
+                    this.disposableCups -= CoffeeTypes.ESPRESSO.cup;
+                    this.money += CoffeeTypes.ESPRESSO.cost;
+                }
+            }
+            case "2" -> {
+                if (this.water - CoffeeTypes.LATTE.water < 0) {
+                    System.out.println("Sorry, not enough water!");
+                } else if (this.milk - CoffeeTypes.LATTE.milk < 0) {
+                    System.out.println("Sorry, not enough milk!");
+                } else if (this.coffeeBeans - CoffeeTypes.LATTE.coffeeBeans < 0) {
+                    System.out.println("Sorry, not enough coffee beans!");
+                } else if (this.disposableCups - CoffeeTypes.LATTE.cup < 0) {
+                    System.out.println("Sorry, not enough cups!");
+                } else if (this.water - CoffeeTypes.LATTE.water < 0 && this.milk - CoffeeTypes.LATTE.milk < 0) {
+                    System.out.println("Sorry, not enough water and milk!");
+                } else if (this.water - CoffeeTypes.LATTE.water < 0 && this.milk - CoffeeTypes.LATTE.milk < 0 &&
+                        this.coffeeBeans - CoffeeTypes.LATTE.coffeeBeans < 0) {
+                    System.out.println("Sorry, not enough water, milk and coffee beans!");
+                } else if (this.water - CoffeeTypes.LATTE.water < 0 && this.milk - CoffeeTypes.LATTE.milk < 0 &&
+                        this.coffeeBeans - CoffeeTypes.LATTE.coffeeBeans < 0 && this.disposableCups - CoffeeTypes.LATTE.cup < 0) {
+                    System.out.println("Sorry, not enough water, milk, coffee beans and cups!");
+                } else {
+                    System.out.println("I have enough resources, making you a coffee!");
+                    this.water -= CoffeeTypes.LATTE.water;
+                    this.milk -= CoffeeTypes.LATTE.milk;
+                    this.coffeeBeans -= CoffeeTypes.LATTE.coffeeBeans;
+                    this.disposableCups -= CoffeeTypes.LATTE.cup;
+                    this.money += CoffeeTypes.LATTE.cost;
+                }
+            }
+            case "3" -> {
+                if (this.water - CoffeeTypes.CAPPUCCINO.water < 0) {
+                    System.out.println("Sorry, not enough water!");
+                } else if (this.milk - CoffeeTypes.CAPPUCCINO.milk < 0) {
+                    System.out.println("Sorry, not enough milk!");
+                } else if (this.coffeeBeans - CoffeeTypes.CAPPUCCINO.coffeeBeans < 0) {
+                    System.out.println("Sorry, not enough coffee beans!");
+                } else if (this.disposableCups - CoffeeTypes.CAPPUCCINO.cup < 0) {
+                    System.out.println("Sorry, not enough cups!");
+                } else if (this.water - CoffeeTypes.CAPPUCCINO.water < 0 && this.milk - CoffeeTypes.CAPPUCCINO.milk < 0) {
+                    System.out.println("Sorry, not enough water and milk!");
+                } else if (this.water - CoffeeTypes.CAPPUCCINO.water < 0 && this.milk - CoffeeTypes.CAPPUCCINO.milk < 0 &&
+                        this.coffeeBeans - CoffeeTypes.CAPPUCCINO.coffeeBeans < 0) {
+                    System.out.println("Sorry, not enough water, milk and coffee beans!");
+                } else if (this.water - CoffeeTypes.CAPPUCCINO.water < 0 && this.milk - CoffeeTypes.CAPPUCCINO.milk < 0 &&
+                        this.coffeeBeans - CoffeeTypes.CAPPUCCINO.coffeeBeans < 0 && this.disposableCups - CoffeeTypes.CAPPUCCINO.cup < 0) {
+                    System.out.println("Sorry, not enough water, milk, coffee beans and cups!");
+                } else {
+                    System.out.println("I have enough resources, making you a coffee!");
+                    this.water -= CoffeeTypes.CAPPUCCINO.water;
+                    this.milk -= CoffeeTypes.CAPPUCCINO.milk;
+                    this.coffeeBeans -= CoffeeTypes.CAPPUCCINO.coffeeBeans;
+                    this.disposableCups -= CoffeeTypes.CAPPUCCINO.cup;
+                    this.money += CoffeeTypes.CAPPUCCINO.cost;
+                }
+            }
+            default -> System.out.println("Wrong input!");
+        }
+        this.buy = false;
+    }
+
+    public void currentResources() {
+        System.out.println(RESOURCES.formatted(this.water, this.milk, this.coffeeBeans, this.disposableCups, this.money));
+        this.remaining = false;
+    }
+
+    public void giveMoney() {
+        System.out.println(MONEY_GIVEN.formatted(this.money));
+        this.money = 0;
+        this.take = false;
+    }
+
+    public void fillMachine() {
+        System.out.println(ADD_WATER_MSG);
+        Main.input = Main.scanner.next();
+        this.water += Integer.parseInt(Main.input);
+        System.out.println(ADD_MILK_MSG);
+        Main.input = Main.scanner.next();
+        this.milk += Integer.parseInt(Main.input);
+        System.out.println(ADD_BEANS_MSG);
+        Main.input = Main.scanner.next();
+        this.coffeeBeans += Integer.parseInt(Main.input);
+        System.out.println(ADD_CUPS_MSG);
+        Main.input = Main.scanner.next();
+        this.disposableCups += Integer.parseInt(Main.input);
+        this.fill = false;
+
+    }
+
+}
